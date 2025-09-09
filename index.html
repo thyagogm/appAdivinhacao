@@ -1,0 +1,44 @@
+<!---
+Crie um arquivo HTML com a seguinte estrutura:
+Um título para o jogo (ex: "Jogo de Adivinhação").
+Uma mensagem inicial explicando como o jogo funciona.
+Um campo de input para o jogador inserir seu palpite.
+Um botão com o texto "Chutar".
+Uma tag <p> para exibir as mensagens do jogo (dicas, resultado, etc.).
+Uma tag <p> para exibir o número de tentativas restantes.
+-->
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhação</title>
+</head>
+<body>
+    <header>
+        <h1>Jogo de Adivinhação</h1>
+        <p>"Bem-vindo ao Jogo de Adivinhação! 🎮
+            O objetivo é simples: tente adivinhar o número secreto que foi escolhido aleatoriamente.
+            Você poderá fazer palpites e receberá dicas dizendo se o número é maior ou menor que o seu chute.
+            Continue tentando até acertar!
+            Boa sorte e divirta-se!"</p>
+    </header>
+    <main>
+        <section>
+            <article>
+                <p>Numero de 0 a 100!</p>
+                <form>
+                    <label for="palpite">Palpite:</label>
+                    <input type="number" placeholder="Insira seu Palpite">
+                    <button>Chute!</button>
+                    <p></p>
+                    <p></p>
+                </form>
+            </article>
+        </section>
+    </main>
+
+</body>
+</html>
