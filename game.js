@@ -1,23 +1,67 @@
 /* 
-Funcionalidades JavaScript:
-Ao carregar a página, o JavaScript deve:
-Gerar um número aleatório entre 1 e 100 e armazená-lo em uma variável.
-Definir o número máximo de tentativas (ex: 10).
-Inicializar o contador de tentativas.
-Ao clicar no botão "Chutar", o JavaScript deve:
-Capturar o valor inserido no input (palpite do jogador).
-Validar se o palpite é um número válido entre 1 e 100.
-Comparar o palpite com o número secreto e exibir uma mensagem:
-"Você acertou!" (e o jogo termina).
-"O número secreto é maior" (e o jogador continua tentando).
-"O número secreto é menor" (e o jogador continua tentando).
-Decrementar o contador de tentativas.
-Exibir o número de tentativas restantes.
-Se o jogador atingir o número máximo de tentativas, o jogo termina com a mensagem "Você perdeu! O número secreto era X".
+Jogo de Adivinhação - JS Completo
+- Número secreto entre 0 e 100
+- Máximo de 10 tentativas
+- Corações como tentativas restantes
+- Dicas: maior/menor + distância (perto/longe)
+- Botão de reiniciar
 */
 
-let numeroAleatorio =  Math.random() * 100;
-let numeroInteiro = parseInt(numeroAleatorio);
-let tentativasMaximas = 10;
-let contador = 0;
-alert(numeroInteiro);
+let numeroSecreto;
+const tentativasMaximas = 10;
+let contador;
+
+function iniciarJogo() {
+    numeroSecreto = Math.floor(Math.random() * 101);
+    contador = 0;
+    document.getElementById("palpite").value = "";
+    document.getElementById("dica").textContent = "";
+    document.getElementById("resultado").textContent = "";
+    atualizarCorações();
+}
+
+function atualizarCorações() {
+    const coracoesRestantes = tentativasMaximas - contador;
+    document.getElementById("tentativas").textContent =
+        "❤️".repeat(Math.max(coracoesRestantes, 0));
+}
+
+function validarPalpite() {
+    const palpite = parseInt(document.getElementById("palpite").value);
+    const dicaEl = document.getElementById("dica");
+    const resultadoEl = document.getElementById("resultado");
+    if (isNaN(palpite) || palpite < 0 || palpite > 100) {
+        resultadoEl.textContent = "⚠️ Palpite inválido! Digite 0 a 100.";
+        return;
+    }
+    contador++;
+    if (palpite === numeroSecreto) {
+        resultadoEl.textContent = "🎉 Parabéns! Você acertou!";
+        dicaEl.textContent = "";
+        atualizarCorações();
+        return;
+    }
+
+    dicaEl.textContent = palpite > numeroSecreto ? "O número é menor." : "O número é maior.";
+    const diferenca = Math.abs(palpite - numeroSecreto);
+    if (diferenca <= 5) {
+        dicaEl.textContent += " 🔥 Muito perto!";
+    } else if (diferenca <= 15) {
+        dicaEl.textContent += " 🙂 Perto!";
+    } else {
+        dicaEl.textContent += " ❄️ Bem longe!";
+    }
+
+    atualizarCorações();
+
+    if (contador >= tentativasMaximas) {
+        resultadoEl.textContent = "💀 Você perdeu! O número era " + numeroSecreto;
+        dicaEl.textContent = "";
+    }
+}
+
+function reiniciarJogo() {
+    iniciarJogo();
+}
+
+window.onload = iniciarJogo;

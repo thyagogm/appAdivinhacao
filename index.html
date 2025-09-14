@@ -8,47 +8,48 @@ Uma tag <p> para exibir as mensagens do jogo (dicas, resultado, etc.).
 Uma tag <p> para exibir o número de tentativas restantes.
 -->
 
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo de Adivinhação</title>
+    <script src="game.js" defer></script>
     <link rel="stylesheet" href="style.css">
-    <script src="game.js"></script>
 </head>
 <body>
     <header>
         <h1>Jogo de Adivinhação</h1>
-        <p>"Bem-vindo ao Jogo de Adivinhação! 🎮
-            O objetivo é simples: tente adivinhar o número secreto que foi escolhido aleatoriamente.
-            Você poderá fazer palpites e receberá dicas dizendo se o número é maior ou menor que o seu chute.
-            Continue tentando até acertar!
-            Boa sorte e divirta-se!"</p>
+        <p>
+            Bem-vindo ao Jogo de Adivinhação! 🎮<br>
+            Tente adivinhar o número secreto entre 0 e 100.<br>
+            Você receberá dicas dizendo se o número é maior ou menor que seu chute.<br>
+            Boa sorte!
+        </p>
     </header>
+
     <main>
         <section>
             <article>
-                <p>Numero de 0 a 100!</p>
-                <form>
-                    <label for="palpite">Palpite:</label>
-                    <input type="number" placeholder="Insira seu Palpite">
-                    <button>Chute!</button>
-                    <p>numero secreto é maior</p>
-                    <p>Tentativas: 10</p>
-                    <p>resultado</p>
+                <form onsubmit="return false;">
+                <p>Insira um número de 0 a 100:</p>
+                <input id="palpite" type="number" placeholder="Digite seu palpite">
+                <button id="botaoChutar" onclick="validarPalpite()">Chute!</button>
+
+                <p id="dica"></p>
+                <p>Vidas Restantes</p>
+                <p id="tentativas"></p>
+                <p id="resultado"></p>
+
+                <button id="botaoReiniciar" onclick="reiniciarJogo()">Reiniciar</button>
                 </form>
             </article>
         </section>
     </main>
-     <footer>
+
+    <footer>
         <p>&copy; 2025 Thyago Gonçalves Moreira - Todos direitos reservados</p>
-        <p>Conecte-se comigo:</p>
-        <a href="">LinkedIn</a>
-        <a href="">Github</a>
     </footer>
-
-
 </body>
 </html>
+
