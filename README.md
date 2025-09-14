@@ -21,4 +21,4 @@ Um simples jogo de adivinhação de números feito em **HTML, CSS e JavaScript**
 ## 🕹️ Como jogar
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/jogo-adivinhacao.git
+   git clone https://github.com/thyagogm/appAdivinhacao.git
